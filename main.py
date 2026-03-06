@@ -1,7 +1,22 @@
+"""
+Automação de cadastro de produtos em sistema web.
+
+Este script utiliza PyAutoGUI para automatizar o processo de:
+- abrir o navegador
+- acessar o sistema
+- realizar login
+- cadastrar produtos automaticamente a partir de um arquivo CSV.
+
+Projeto desenvolvido durante o Intensivão de Python da Hashtag Programação.
+"""
+
 # bibliotes = pacotes de código   /pip install *****/
 import pyautogui
 import time
+import pandas
 
+email = "teste@gmail.com"
+senha = "Teste12345?"
 
 link = 'https://dlp.hashtagtreinamentos.com/python/intensivao/login'
 
@@ -28,16 +43,16 @@ time.sleep(3)  #espera 2 segundos para o sistema carregar
 # Passo 2: Fazer login
 # clicar no campo de email
 pyautogui.click(x=500, y=400)  #clica no campo de email (coordenadas x e y)
-pyautogui.write('teste@gmail.com')  #escreve o email
+pyautogui.write(email)  #escreve o email
 pyautogui.press('tab')  #aperta tab para ir para o campo de senha
-pyautogui.write('Fox40028922?')  #escreve a senha
+pyautogui.write(senha)  #escreve a senha
 pyautogui.press('tab')  #aperta tab para ir para o botão de login
 pyautogui.press('enter')  #aperta enter para fazer login
 time.sleep(2)
 
 # Passo 3: Abrir a base de dados (importar o arquivo)   /pip install pandas openpyxl/
-import pandas 
-tabela = pandas.read_csv("C:/Users/gabya/OneDrive/Área de Trabalho/Jornada Python/Gabarito/produtos.csv")  #lê a tabela de produtos
+ 
+tabela = pandas.read_csv("data/produtos.csv")  #lê a tabela de produtos
 print(tabela)  #mostra a tabela no terminal
 
 for linha in tabela.index:  #para cada linha da tabela
